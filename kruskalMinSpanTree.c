@@ -1,20 +1,25 @@
 #include <stdio.h>
 
-typedef struct {
+typedef struct 
+{
     int u, w, v;
 }GRAPH;
 
-typedef struct {
+typedef struct 
+{
     int u, v;
 }MST;
 
-void kruskal(GRAPH graph[], int *label, MST mst[], int totalWeight, int vertices, int edges) {
+void kruskal(GRAPH graph[], int *label, MST mst[], int totalWeight, int vertices, int edges) 
+{
     int i = 0, j = 0, k, u, v, labelNo = 0, oldLabel;
-    while ((i < vertices) && (j < edges)) {
+    while ((i < vertices) && (j < edges)) 
+    {
         u = graph[j].u;
         v = graph[j].v;
         
-        if (label[u] + label[v] == 0) { // they did not labeled before
+        if (label[u] + label[v] == 0) 
+	{ // they did not labeled before
             labelNo++;
             label[u] = label[v] = labelNo;
             mst[i].u = u;
@@ -22,24 +27,29 @@ void kruskal(GRAPH graph[], int *label, MST mst[], int totalWeight, int vertices
             totalWeight += graph[j].w;
             i++;
         }
-        else if ( label[u] != label[v] ) {
-            if (label[u] == 0) { // u did not labeled but v labeled
+        else if ( label[u] != label[v] ) 
+	{
+            if (label[u] == 0) 
+	    { // u did not labeled but v labeled
                 label[u] = label[v]; //give v's label to u
                 mst[i].u = u;
                 mst[i].v = v; //add them to minimum spanning tree
                 totalWeight += graph[j].w;
                 i++;
             }
-            else if (label[v] == 0) { // v did not labeled but u labeled
+            else if (label[v] == 0) 
+	    { // v did not labeled but u labeled
                 label[v] = label[u]; // give u's label to v
                 mst[i].u = u;
                 mst[i].v = v; //add them to minimum spanning tree
                 totalWeight += graph[j].w;
                 i++;
             }
-            else { // they both labeled, they are in different connected component
+            else 
+	    { // they both labeled, they are in different connected component
                 oldLabel = label[u];
-                for (k = 0; k < vertices; k++) {
+                for (k = 0; k < vertices; k++) 
+		{
                     if (label[k] == oldLabel) 
                         label[k] = label[v];
                 } //we combined to different connected component
