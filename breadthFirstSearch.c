@@ -1,55 +1,66 @@
 #include <stdio.h>
 #define N 11
 
-typedef struct {
+typedef struct 
+{
     int u, v;
 }GRAPH;
 
-typedef struct {
+typedef struct 
+{
     int queue[N];
     int rear;
     int front;
 }QUEUE;
 
-void initiliazeQueue(QUEUE *q) {
+void initiliazeQueue(QUEUE *q) 
+{
     q->rear = 0;
     q->front = 0;
 }
 
-void enqueue(QUEUE *q, int x) {
+void enqueue(QUEUE *q, int x) 
+{
     q->queue[q->rear++] = x;
 }
 
-int dequeue(QUEUE *q) {
+int dequeue(QUEUE *q)
+{
     return q->queue[q->front++];
 }
 
-void adjacencyBuilder(GRAPH graph[], int adjacency[][7], int edges, int vertices) {
+void adjacencyBuilder(GRAPH graph[], int adjacency[][7], int edges, int vertices) 
+{
     int i, j;
     for (i = 0; i < vertices; i++) //initialize the matrix
         for (j = 0;  j < vertices; j++)
             adjacency[i][j] = 0;
     
-    for (i = 0; i < edges; i++) {
+    for (i = 0; i < edges; i++) 
+    {
         adjacency[graph[i].u][graph[i].v] = 1;
         adjacency[graph[i].v][graph[i].u ] = 1;
     }
     
-    for (i = 0; i < vertices; i++) { //print the matrix
+    for (i = 0; i < vertices; i++) 
+    { //print the matrix
         for (j = 0;  j < vertices; j++) 
             printf("%d ", adjacency[i][j]);
         printf("\n");
     }
 }
 
-void bfsIterative(QUEUE *q, int v, int adjacency[][7], int *visited, int vertices, int *parent){
+void bfsIterative(QUEUE *q, int v, int adjacency[][7], int *visited, int vertices, int *parent)
+{
     int i;
     parent[i] = -1;
     visited[v] = 1;
     enqueue(q, v);
-    while (q->front < q->rear) {
+    while (q->front < q->rear) 
+    {
         v = dequeue(q);
-        for (i = 0; i < vertices; i++) {
+        for (i = 0; i < vertices; i++) 
+	{
              if ((adjacency[v][i] == 1) && (visited[i] == 0)) {
                 parent[i] = v;
                 visited[i] = 1;
@@ -61,13 +72,15 @@ void bfsIterative(QUEUE *q, int v, int adjacency[][7], int *visited, int vertice
 
 int main(int argc, char **argv)
 {
-	GRAPH graph[11];
+    GRAPH graph[11];
     QUEUE q;
     int adjacency[7][7], visited[7], parent[7], vertices = 7, edges = 11, i;
-    for (i = 0; i < vertices; i++) { //initialize visited array
+    for (i = 0; i < vertices; i++) 
+    { //initialize visited array
         visited[i] = 0;
     }
-    for (i = 0; i < vertices; i++) { //initialize parent array
+    for (i = 0; i < vertices; i++) 
+    { //initialize parent array
         parent[i] = 0;
     }
     initiliazeQueue(&q);
