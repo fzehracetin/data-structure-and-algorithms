@@ -1,84 +1,28 @@
 #include <stdio.h>
-#include <stdlib.h>
-#define MAX 100
 
-typedef struct {
-    int top;
-    int Stack[MAX];
-}stack;
-
-void initStack(stack *s){
-    s->top = 0;
-}
-
-int isFull (stack *s) {
-    if (s->top == MAX) 
-        return 1;
-    else
-        return 0;
-}
-
-int isEmpty (stack *s) {
-    if (s->top == 0) 
-        return 1;
-    else
-        return 0;
-}
-
-int pop (stack *s, int *x) {
-    if (isEmpty(s))
-        return 0;
-    else {
-        *x = s->Stack[--s->top];
-        return 1;
+void binarySearch(int wanted, int array[], int n) 
+{
+    int first, last, mid;
+    first = 0;
+    last = n;
+    mid = (first + last)/2;
+    while ( (last > first) && (array[mid] != wanted) ) 
+    {
+        if (array[mid] < wanted) 
+            first = mid + 1;
+        else 
+            last = mid - 1;
+        
+        mid = (last + first) / 2;
     }
-}
-
-int push (stack *s, int x) {
-    if (isFull(s)) 
-        return 0;
-    else {
-        s->Stack[s->top++] = x;
-        return 1;
-    }
-}
-
-int peek (stack *s, int *x) {
-    if (isEmpty(s))
-        return 0;
-    else {
-        int peaky = s->top - 1;
-        *x = s->Stack[peaky];
-        return 1;
-    }
-}
-
-void printStack(stack *s) {
-    if (isEmpty(s))
-        return;
-    else {
-        int i = s->top-1;
-        while( i >= 0) {
-            printf("%d ", s->Stack[i]);
-            i--;
-        } printf("\n");
-    }
+    if (array[mid] == wanted) 
+        printf("Aranan kan bulundu indis : %d \n", mid);
 }
 
 int main(int argc, char **argv)
 {
-    stack s;
-    int x;
-    initStack(&s);
-    push(&s, 5);
-    push(&s, 7);
-    push(&s, 15);
-    printStack(&s);
-    pop(&s, &x);
-    printf("poped value = %d \n", x);
-    printStack(&s);
-    peek(&s, &x);
-    printf("peeked value = %d\n", x);
-    printStack(&s);
+    int array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int n = 10;
+    binarySearch(8, array, n);
 	return 0;
 }
