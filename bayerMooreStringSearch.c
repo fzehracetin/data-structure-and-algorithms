@@ -8,20 +8,25 @@ int main(int argc, char **argv)
     char right[26];
     
     
-    for (i = 0; i < 26; i++) {
+    for (i = 0; i < 26; i++) 
+    {
         right[i] = -1;
     }
-    for (i = 0; i < m; i++) {
+    for (i = 0; i < m; i++) 
+    {
         right[ pattern[i] - 'a' ] = i;
     }
-	while ( ( !flag ) && ( i <= n - m) ) {
+	while ( ( !flag ) && ( i <= n - m) ) 
+	{
         j = m -1;
-        while ( ( str[i + j] == pattern[j] ) && ( j >= 0 ) ) {
+        while ( ( str[i + j] == pattern[j] ) && ( j >= 0 ) ) 
+	{
             j--;
         }
         if ( j < 0 ) 
             flag = 1;
-        else {
+        else 
+	{
             skip = j - right[ str[ i + j] - 'a'];
             if ( skip < 0 ) 
                 i++;
