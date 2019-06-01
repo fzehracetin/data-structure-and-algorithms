@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
+typedef struct node 
+{
     int value;
     struct node* left;
     struct node* right;
 }node;
 
-node* createNode(int value) {
+node* createNode(int value) 
+{
     node* yeni;
     yeni = malloc(sizeof(node));
     yeni->value = value;
@@ -16,70 +18,91 @@ node* createNode(int value) {
     return yeni;
 }
 
-void addNode(int value, node* root) {
-    if (root) {
-        if (root->value < value) {
+void addNode(int value, node* root) 
+{
+    if (root) 
+    {
+        if (root->value < value) 
+	{
             if (root->right) 
                 addNode(value, root->right);
-            else {
+            else 
+	    {
                 node* yeni = createNode(value);
                 root->right = yeni;
             }
-        } else {
+        } 
+	else 
+	{
             if (root->left) 
                 addNode(value, root->left);
-            else {
+            else 
+	    {
                 node* yeni = createNode(value);
                 root->left = yeni;
             }
         }
-    } else {
+    } 
+    else 
+    {
         root->value = value;
         root->left = NULL;
         root->right = NULL;
     }
 }
 
-void search(int value, node* root) {
+void search(int value, node* root) 
+{
     int flag = 1;
-    if ( !root) {
+    if ( !root) 
+    {
         printf("List is empty \n");
-    } else {
+    } 
+    else 
+    {
         node* current = root;
-        while ( (current) && (flag) ) {
+        while ( (current) && (flag) ) 
+	{
             if (current->value < value) 
                 current = current-> right;
             else if ( current-> value > value)
                 current = current->left;
-            else if ( current-> value == value) {
+            else if ( current-> value == value) 
+	    {
                 printf("Element found \n");
                 flag = 0;
             }
         }
     }
-    if (flag){
+    if (flag)
         printf("Element is not in the tree \n");
-    }
+    
 }
 
-void preOrder (node* root) {
-    if (root) {
+void preOrder (node* root) 
+{
+    if (root) 
+    {
         printf("%d ", root-> value);
         preOrder(root->left);
         preOrder(root->right);
     }
 }
 
-void postOrder(node* root) {
-    if (root) {
+void postOrder(node* root) 
+{
+    if (root) 
+    {
         postOrder(root->left);
         printf("%d ", root->value);
         postOrder(root->right);
     }
 }
 
-void inOrder(node* root) {
-    if (root) {
+void inOrder(node* root) 
+{
+    if (root) 
+    {
         inOrder(root->left);
         inOrder(root->right);
         printf("%d ", root->value);
