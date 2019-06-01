@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insertInHeap(int *n, int HT[], int eleman) {
+void insertInHeap(int *n, int HT[], int eleman) 
+{
     int tmp, i;
     HT[++*n] = eleman;
     i = *n;
     int parent = (i-1)/2;
-    while( (i >= 0)&& (HT[parent] > HT[i]) ) {
+    while( (i >= 0)&& (HT[parent] > HT[i]) ) 
+    {
         tmp = HT[parent];
         HT[parent] = HT[i];
         HT[i] = tmp;
@@ -15,8 +17,10 @@ void insertInHeap(int *n, int HT[], int eleman) {
     }
 }
 
-int findSmallestChild(int n, int HT[], int i) {
-    if (n > 2*i + 2) {
+int findSmallestChild(int n, int HT[], int i) 
+{
+    if (n > 2*i + 2) 
+    {
         if ( HT[2*i + 1] > HT[2*i + 2]) 
             return 2*i + 1;
         else
@@ -29,13 +33,15 @@ int findSmallestChild(int n, int HT[], int i) {
     
 }
 
-void removeMin(int *n, int HT[] ) {
+void removeMin(int *n, int HT[] ) 
+{
     int tmp, i=0, adr;
     tmp = HT[0];
     HT[0] = HT[*n];
     HT[*n--] = tmp;
     adr = findSmallestChild(*n, HT, i);
-    while (( adr ) && (HT[i] > HT[ adr])) {
+    while (( adr ) && (HT[i] > HT[ adr])) 
+    {
         tmp = HT[i];
         HT[i] = HT[adr];
         HT[adr] = tmp;
@@ -44,10 +50,12 @@ void removeMin(int *n, int HT[] ) {
     }
 }
 
-void downHeap(int HT[], int i, int n) {
+void downHeap(int HT[], int i, int n) 
+{
     int tmp, adr;
     adr = findSmallestChild(n, HT, i);
-    while (( adr ) && (HT[i] > HT[ adr])) {
+    while (( adr ) && (HT[i] > HT[ adr])) 
+    {
         tmp = HT[i];
         HT[i] = HT[adr];
         HT[adr] = tmp;
@@ -56,15 +64,6 @@ void downHeap(int HT[], int i, int n) {
     }
 }
 
-void heapSort (int n, int HT[]) {
-    int i; //, tmp;
-    for (i = n-1 ; i >= 0; i--) {
-        /*tmp = HT[0];
-        HT[0] = HT[i];
-        HT[i] = tmp;*/
-        downHeap(HT, i, n);
-    }
-}
 
 int main(int argc, char **argv)
 {
