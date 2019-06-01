@@ -1,5 +1,6 @@
--# data-structure-and-algorithms
-All necessary codes for data structures and algorithms that I learned in that course.
+# Data Structure and Algorithms
+
+All necessary codes for data structures and algorithms that I learned in this course.
 
 1- Insertion Sort
 
