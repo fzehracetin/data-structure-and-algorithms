@@ -25,7 +25,7 @@ int bruteForce(char str[], char pattern[], int k, int m)
 int main(int argc, char **argv)
 {
     int k = 25, m = 4, index;
-	char str[30] = "Did i say that i need you?";
+    char str[30] = "Did i say that i need you?";
     char pattern[4] = "need";
     
     index = bruteForce(str, pattern, k, m);
