@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int boyerMoore(char str[], char pattern[], int n, int m) {
+int boyerMoore(char str[], char pattern[], int n, int m) 
+{
     char right[26];
     int i, j, flag = 0, skip;
     
