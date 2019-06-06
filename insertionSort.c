@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     }
     printf("\n");
     
-	insertion(a, n);
+    insertion(a, n);
     
     for(i = 0; i<n; i++) 
     {
